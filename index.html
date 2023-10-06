@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+    <!-- Add your CSS styles here -->
+    <style>
+
+    </style>
+     <link rel="icon" href="/images/logo.png" type="image/x-icon">
+   <link rel="stylesheet" href="/css/helpers.css"> 
+   <link rel="stylesheet" href="/css/dashboard.css">
+   <link rel="stylesheet" href="/css/make-investement.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add Bootstrap CSS link -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
+   
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+    <div class="position-fixed">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" id="dashboard-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="profile-link">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#submenu-investments" id="">
+                    <i class="fas fa-chart-line"></i> Investments
+                </a>
+                <ul class="nav flex-column collapse" id="submenu-investments">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="make-investment-link">
+                            <i class="fas fa-plus"></i> Make Investment
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="investments-link">
+                            <i class="fas fa-hand-holding-usd"></i> Withdrawal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="manage-investments-link">
+                            <i class="fas fa-tasks"></i> Manage All
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="affiliates-link">
+                    <i class="fas fa-users"></i> My Affiliates
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="earnings-link">
+                    <i class="fas fa-dollar-sign"></i> My Earnings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="funds-transfer-link">
+                    <i class="fas fa-exchange-alt"></i> Funds Transfer
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="next-of-kin-link">
+                    <i class="fas fa-address-book"></i> Next of Kin
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="kyc-update-link">
+                    <i class="fas fa-id-card"></i> KYC Update
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="customer-support-link">
+                    <i class="fas fa-headset"></i> Customer Support
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="logout-link">
+                    <i class="fas fa-sign-out-alt"></i><button class="btn btn-danger" onclick="confirmLogout()">Logout</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+   <!-- Main Content Container -->
+   <main class="col-md-9 ms-md-auto col-lg-10 px-md-4">
+    <!-- Content for Dashboard -->
+    <div id="dashboard-content" class="content-section">
+        <!-- Header with User Greeting and Profile Dropdown -->
+     
+        <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light" style="border-radius: 0 20px 20px 0;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: white;">
+            <img src="/images/logo-light.png" alt="Company Logo" height="30" class="d-inline-block align-text-top">
+            QuantumEdge
+        </a>
+        <!-- Add your navbar items here -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <!-- Add your navbar items here -->
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <div class="dropdown" id="userDropdownContainer">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user text-white"></i>
+                        <span class="text-white" id="userNameDisplay"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-center" id="userDropdown">
+                        <a class="dropdown-item" href="#profile-content">Edit Profile</a>
+                        <a class "dropdown-item" href="#customer-support-content">Customer Support</a>
+                        <div class="dropdown-divider"></div>
+                        <button class="btn btn-danger" onclick="confirmLogout()">Logout</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add the theme toggle button here -->
+            <li class="nav-item">
+                <button class="btn btn-link nav-link" id="theme-toggle">
+                    <i class="fas fa-sun"></i> Light / <i class="fas fa-moon"></i> Dark
+                </button>
+            </li>
+        </div>
+    </div>
+</nav>
+
+      <!-- Key Financial Information -->
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-dollar-sign text-primary"></i> Available Balances</h5>
+                <p class="card-text"><span class="text-success">$0.00</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-piggy-bank text-warning"></i> Total Deposits</h5>
+                <p class="card-text"><span class="text-success">$0.00</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-chart-line text-success"></i> Total Earnings</h5>
+                <p class="card-text"><span class="text-success">$0.00</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-money-bill text-danger"></i> Total Withdrawals</h5>
+                <p class="card-text"><span class="text-danger">$0.00</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Asset Allocation Pie Chart -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Asset Allocation</h5>
+                        <div style="width: 100%; height: 300px;">
+                            <canvas id="assetAllocationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment Performance Charts -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Investment Performance</h5>
+                        <div style="width: 100%; height: 350px;">
+                            <canvas id="investmentPerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+
+
+               <!-- Profile Content Section -->
+               <div id="profile-content" class="content-section" style="display: none;">
+    <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <!-- Navbar for Profile Sections -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" id="profileTabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profileInfoTab" data-toggle="tab" href="#profileInfo">
+                            <i class="fas fa-user"></i> Profile Information
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="withdrawalMethodsTab" data-toggle="tab" href="#withdrawalMethods">
+                            <i class="fas fa-coins"></i> Withdrawal Methods
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="securitySettingsTab" data-toggle="tab" href="#securitySettings">
+                            <i class="fas fa-shield-alt"></i> Security Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Profile Information Section -->
+        <div class="tab-content mt-4">
+            <div class="tab-pane fade show active" id="profileInfo">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card rounded">
+                            <div class="card-body text-center">
+                                <div class="d-flex flex-column align-items-center mt-3">
+                                    <!-- Add a grey background color to the profile picture -->
+                                    <div style="background-color: #ccc; width: 150px; height: 150px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <img id="userProfilePicture" src="profile-picture.jpg" alt="User Profile Picture" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
+                                    </div>
+                                    <!-- Create an attractive and responsive button with Bootstrap classes and curved edges -->
+                                    <button class="btn btn-primary mt-3 btn-rounded" id="changeProfilePictureBtn">Change Profile Picture</button>
+                                </div>
+                                <h4 class="card-title mt-4">Profile Information</h4>
+                                <!-- Display the user's profile information here -->
+                                <img id="userProfilePictureDisplay"  alt="User Profile Picture" class="img-fluid rounded-circle" style="display: none; width: 150px; height: 150px;">
+                                <p class="card-text" id="fullName">Fullname: Loading...</p>
+                                <p class="card-text" id="email">Email: Loading.....</p>
+                                <p class="card-text" id="username">Username: Loading....</p>
+                                <p class="card-text" id="phone">Phone Number: loading...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card rounded">
+                            <div class="card-body">
+                                <h4 class="card-title">Next of Kin</h4>
+                                <!-- Display the user's next of kin information here -->
+                                <p class="card-text">Full Name: Loading....</p>
+                                <p class="card-text">Relationship: Loading....</p>
+                                <p class="card-text">Contact Phone: Loading....</p>
+                                <p class="card-text">Contact Email: Loading...</p>
+                                <p class="card-text">Physical Address: Loading....</p>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <a href="nextofkin.html" style="font-weight: bold; color:#fff; text-decoration: none; margin-right: 10px;">Edit Next of Kin</a>
+                            <a href="nextofkin.html" style="font-weight: bold; color: #fff; text-decoration: none;">Add Next of Kin</a>
+                        </div>
+                    </div>
+                </div>
+                <h4>KYC Account Status</h4>
+                <div class="col-md-4">
+                    <!-- Display the KYC account status here -->
+                    <p>Status: <span id="kycStatusLabel" class="kyc-status-unverified">Fetching...</span></p>
+                    <a href="KYCUpdate.html" style="font-weight: bold; color: #fff;text-decoration: none; position: relative;">Verify your KYC
+                        <span class="shine-animation"></span>
+                    </a>
+                </div>
+            </div>
+
+         <!-- Withdrawal Methods Section -->
+<div class="tab-pane fade container text-center mt-4" id="withdrawalMethods">
+    <!-- Place the user's withdrawal methods here -->
+    <div class="card card-box">
+        <div class="card-body">
+            <h4 class="card-title">Withdrawal Methods</h4>
+            <form id="addWithdrawalMethodForm">
+                <div class="form-group">
+                    <label for="cryptoSelect">Select Cryptocurrency</label>
+                    <select class="form-control" id="cryptoSelect" required>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="XRP">Ripple (XRP)</option>
+                        <option value="LTC">Litecoin (LTC)</option>
+                        <option value="USDT">Tether (USDT TRC2O)</option>
+                        <option value="TRX">Tron (TRX)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newMethod">Add New Method</label>
+                    <input type="text" class="form-control" id="newMethod" placeholder="Enter new withdrawal method">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Method</button>
+            </form>
+            <!-- List to display withdrawal methods -->
+            <ul id="withdrawalMethodsList">
+                <!-- Withdrawal methods will be displayed here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+            <!-- Security Settings Section -->
+            <div class="tab-pane fade" id="securitySettings">
+                <!-- Security Settings Section -->
+                <div class="box security-settings">
+                    <h4>Security Settings</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- 2FA Switch -->
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="twoFactorAuthCheckbox">
+                                <label class="custom-control-label" for="twoFactorAuthCheckbox">2FA</label>
+                            </div>
+                            <!-- Modal dialog for 2FA settings -->
+                            <div id="2faDialog" class="modal" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!-- Content for 2FA settings dialog -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Save My Activity Logs Switch -->
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="activityLogsCheckbox">
+                                <label class="custom-control-label" for="activityLogsCheckbox">Save Activity Logs</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Email Me If Encounter Unusual Activity Switch -->
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="emailNotificationCheckbox">
+                                <label class="custom-control-label" for="emailNotificationCheckbox">Email Unusual Activity</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browser Sessions -->
+                <div class="box">
+                    <h5>Browser Sessions</h5>
+                    <!-- Display user's browser sessions here -->
+                    <ul id="browserSessionsList">
+                        <!-- Browser sessions will be displayed here -->
+                    </ul>
+                </div>
+                <!-- Change Password Section -->
+                <div class="box">
+                    <h5>Change Password</h5>
+                    <button class="btn btn-primary" id="changePasswordBtn">Change Password</button>
+                    <!-- Change Password Form (hidden by default) -->
+                    <form id="changePasswordForm" style="display: none;">
+                        <!-- Content for Change Password Form -->
+                    </form>
+                </div>
+                <!-- Change Email Section -->
+                <div class="box">
+                    <h5>Change Email Address</h5>
+                    <button class="btn btn-primary" id="changeEmailBtn">Change Email Address</button>
+                    <!-- Change Email Form (hidden by default) -->
+                    <form id="changeEmailForm" style="display: none;">
+                        <!-- Content for Change Email Form -->
+                    </form>
+                </div>
+                <!-- Delete Account Section -->
+                <div class="box text-center">
+                    <h5>Delete Account</h5>
+                    <button class="btn btn-danger" id="deleteAccountBtn">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                <!-- Content for Withdrawal -->
+                <div class="col-md-9 ml-md-auto col-lg-10 px-md-4">
+                <div id="investments-content" class="content-section" style="display: none;">
+                    <div class="container mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title mb-4">Withdrawal Page</h2>
+    
+                                <div class="form-group">
+                                    <label for="earningsSource">Source of Earnings:</label>
+                                    <select class="form-control" id="earningsSource">
+                                        <option value="referral">Referral</option>
+                                        <option value="investments">Investments</option>
+                                    </select>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label for="withdrawalAmount">Withdrawal Amount:</label>
+                                    <input type="number" class="form-control" id="withdrawalAmount" placeholder="Enter withdrawal amount">
+                                </div>
+    
+                                <div class="form-group">
+                                    <label for="withdrawalMethod">Withdrawal Method:</label>
+                                    <select class="form-control" id="withdrawalMethod">
+                                        <!-- Withdrawal methods will be populated dynamically using JavaScript -->
+                                    </select>
+                                </div>
+    
+                                <!-- Withdraw button initially disabled -->
+                                <button class="btn btn-primary mt-3" id="withdrawButton" onclick="initiateWithdrawal()" disabled>Withdraw</button>
+    
+                                            <!-- Countdown timer, message, and rotating spinner (Initially hidden) -->
+                    <div class="countdown-container" id="countdownContainer" style="display: none;">
+                        <div class="countdown-spinner text-primary" id="countdownSpinner">
+                            <div class="spinner-border" role="status"></div>
+                        </div>
+                        <p class="mt-2"><strong id="countdownTimer">0:10</strong></p>
+                        <p id="requestInProgressMessage">Request in Progress. Please refrain from refreshing the page while we process your request.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+             <!-- Content for Make Investment -->
+        <div class="col-md-9 ml-md-auto col-lg-10 px-md-4">
+            <div id="make-investment-content" class="content-section" style="display: none;">
+                <div class="container mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title mb-4">Investment Platform</h2>
+
+                            <!-- Introductory message -->
+                            <p>Welcome to our investment platform. You can make a deposit by selecting a plan and entering the investment amount below.</p>
+
+                            <!-- Plan Selection -->
+                            <div class="form-group">
+                                <label for="investmentPlan">Select Investment Plan:</label>
+                                <select class="form-control" id="investmentPlan">
+                                    <option value="">Select Investment Plan</option>
+                                    <option value="8">Basic Plan -- $100 - $4,999</option>
+                                    <option value="1">Regular -- $5,000 - $29,999</option>
+                                    <option value="2">Premium Plan -- $30,000 - $49,999</option>
+                                    <option value="3">Zenith Plan -- $50,000 - $100,000</option>
+                                    <option value="6">Horizons Plan -- $100,000 - Unlimited</option>
+                                    <option value="5">Retirement Plan -- $500,000 - Unlimited</option>
+                                    <option value="7">Contract Plan -- $1,000,000 - Unlimited</option>
+                                    <!-- Include other plan options -->
+                                </select>
+                            </div>
+
+                            <!-- Investment Amount -->
+                            <div class="form-group">
+                                <label for="investmentAmount">Investment Amount:</label>
+                                <input type="number" class="form-control" id="investmentAmount" placeholder="Enter investment amount">
+                            </div>
+
+                            <!-- Message for minimum investment amount -->
+                            <p id="minInvestmentMessage" style="color: red;"></p>
+
+                            <!-- Submit Request button (Initially hidden) -->
+                            <button class="btn btn-primary mt-3" id="submitRequestButton" onclick="initiateInvestmentRequest()" style="display: none;">Submit Request</button>
+
+                            <!-- Countdown timer, message, and rotating spinner (Initially hidden) -->
+                            <div class="countdown-container" id="countdownContainer">
+                                <div class="countdown-spinner text-primary" id="countdownSpinner">
+                                    <div class="spinner-border" role="status"></div>
+                                </div>
+                                <p class="mt-2"><strong id="countdownTimer"> 0:10</strong></p>
+                                <p id="requestInProgressMessage">Request in Progress. Please refrain from refreshing the page while we process your request.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                  <!-- Content for Manage Investments -->
+        <div class="col-md-9 ml-md-auto col-lg-10 px-md-4">
+            <div id="manage-investments-content" class="content-section" style="display: none;">
+                <div class="container mt-3">
+                    
+                    <h1 class="mb-4">Manage All Deposits</h1>
+
+                    <!-- Search Bar -->
+                    <input type="text" id="searchBar" class="form-control mb-4" placeholder="Search Deposits...">
+
+
+                    <!-- Filtering Options -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label for="dateRange">Date Range:</label>
+                            <input type="date" id="dateRange" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="depositType">Deposit Type:</label>
+                            <select id="depositType" class="form-control">
+                                <option value="">All</option>
+                                <option value="referral">Referral</option>
+                                <option value="investment">Investment</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="depositStatus">Deposit Status:</label>
+                            <select id="depositStatus" class="form-control">
+                                <option value="">All</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                                <option value="canceled">Canceled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Deposit History Table -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Date and Time</th>
+                                <th>Deposit Type</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="depositTableBody">
+                            <!-- Deposit rows will be dynamically populated here -->
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination Controls -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <!-- Transaction Details Modal -->
+                    <div class="modal fade" id="transactionDetailsModal" tabindex="-1" role="dialog" aria-labelledby="transactionDetailsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="transactionDetailsModalLabel">Transaction Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Transaction details will be displayed here -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+               <!-- Content for My Affiliates -->
+        <div class="col-md-9 ml-md-auto col-lg-10 px-md-4">
+            <div id="affiliates-content" class="content-section" style="display: none;">
+                <div class="container-fluid">
+                    <!-- Search Bar -->
+                    <input type="text" id="searchBar" class="form-control mb-4" placeholder="Search Affiliates...">
+
+                    <div class="row">
+                        <!-- Total Referral Card -->
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Referral</h5>
+                                    <p class="card-text">Total: <span id="totalReferrals">Loading...</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Referral Link Section -->
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Display the user's unique referral link here -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Your Referral Link</h5>
+                                            <p class="card-text"><span id="referralLink">Loading...</span></p>
+                                            <button class="btn btn-primary" id="copyReferralLink">Copy Link</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Add a section for referral link statistics here -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Referral Link Statistics</h5>
+                                            <!-- Add statistics here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Referral Activity Section -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Referral Activity</h5>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Registration Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Populate referral activity data here -->
+                                            <tr>
+                                                <td>User 1</td>
+                                                <td>2023-09-21</td>
+                                                <td>Registered</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Metrics Section -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Performance Metrics</h5>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="card-subtitle mb-2 text-muted">Conversion Rate</h6>
+                                                    <p class="card-text">Loading...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="card-subtitle mb-2 text-muted">Click-Through Rate (CTR)</h6>
+                                                    <p class="card-text">Loading...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="card-subtitle mb-2 text-muted">Total Clicks</h6>
+                                                    <p class="card-text">Loading...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Affiliate Program FAQs Link -->
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <a href="affiliates_faq.html">Affiliate Program FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Content for My Earnings -->
+        <div class="col-md-9 ml-md-auto col-lg-10 px-md-4">
+            <div id="earnings-content" class="content-section" style="display: none;">
+                <div class="container-fluid">
+                    <h2>My Earnings</h2>
+                    <!-- Search Bar -->
+                    <input type="text" id="searchBar" class="form-control mb-4" placeholder="Search Earnings...">
+
+                    <div class="container mt-5">
+                        <!-- Total Earnings and Breakdown -->
+                        <div class="row">
+                            <!-- Total Earnings Card -->
+                            <div class="col-md-3">
+                                <div class="card earnings-card">
+                                    <div class="card-body">
+                                        <h2>Total Earnings</h2>
+                                        <p>$5,000.00</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Available Balance Card -->
+                            <div class="col-md-3">
+                                <div class="card earnings-card">
+                                    <div class="card-body">
+                                        <h3>Available Balance</h3>
+                                        <p>$2,000.00</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Total Withdrawal Card -->
+                            <div class="col-md-3">
+                                <div class="card earnings-card">
+                                    <div class="card-body">
+                                        <h3>Total Withdrawal</h3>
+                                        <p>$1,000.00</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Total Deposit Card -->
+                            <div class="col-md-3">
+                                <div class="card earnings-card">
+                                    <div class="card-body">
+                                        <h3>Total Deposit</h3>
+                                        <p>$4,000.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings Breakdown Card -->
+                        <div class="container mt-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2>Earnings Breakdown</h2>
+                                    <ul>
+                                        <li>Affiliate Commissions: $3,000.00</li>
+                                        <li>Referral Bonuses: $1,500.00</li>
+                                        <li>Bonus Earnings: $500.00</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Affiliate Commissions Details -->
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h2>Affiliate Commissions Details</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Source</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2023-09-01</td>
+                                                <td>Referral 1</td>
+                                                <td>$500.00</td>
+                                            </tr>
+                                            <!-- Add more commission rows as needed -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Referral Bonuses Details -->
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h2>Referral Bonuses Details</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Referral User</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2023-08-15</td>
+                                                <td>User123</td>
+                                                <td>$200.00</td>
+                                            </tr>
+                                            <!-- Add more bonus rows as needed -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bonus Earnings Details -->
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h2>Bonus Earnings Details</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Source</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2023-09-10</td>
+                                                <td>Promotion</td>
+                                                <td>$100.00</td>
+                                            </tr>
+                                            <!-- Add more bonus rows as needed -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payout History -->
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h2>Payout History</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2023-09-05</td>
+                                                <td>Completed</td>
+                                                <td>$1,000.00</td>
+                                            </tr>
+                                            <!-- Add more payout rows as needed -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notifications Modal Trigger Button -->
+                        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#notificationModal">
+                            Show Notification
+                        </button>
+
+                        <!-- Notifications Modal -->
+                        <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="notificationModalLabel">Notification</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h2>Notifications</h2>
+                                        <p>Stay tuned for upcoming promotions and bonus opportunities.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <!-- Content for Funds Transfer -->
+        <div class="col-md-9 ml-md-auto col-lg-10 px-md-4">
+            <div id="funds-transfer-content" class="content-section" style="display: none;">
+                <!-- Page content -->
+                <div id="content" class="container mt-5">
+                    <!-- Funds Transfer Page wrapped in a Bootstrap card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="mb-4">Funds Transfer</h1>
+                            <form id="transferForm">
+                                <div class="form-group">
+                                    <label for="recipientEmail">Recipient Email</label>
+                                    <input type="email" class="form-control" id="recipientEmail" placeholder="Enter recipient's email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount">Amount</label>
+                                    <input type="number" class="form-control" id="amount" placeholder="Enter amount" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comments">Comments</label>
+                                    <textarea class="form-control" id="comments" rows="3" placeholder="Optional comments"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Transfer Funds</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Transaction History Section wrapped in a Bootstrap card -->
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <h2 class="mb-4">Transaction History</h2>
+                            <!-- Add the "table-responsive" class to make the table responsive -->
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Recipient</th>
+                                            <th>Amount</th>
+                                            <th>Comments</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="transactionTableBody">
+                                        <!-- Sample transaction history data (you can replace with dynamic data from the server) -->
+                                        <tr>
+                                            <td>2023-09-21 10:15:00</td>
+                                            <td>recipient@example.com</td>
+                                            <td>$100.00</td>
+                                            <td>Payment for services</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023-09-20 15:30:00</td>
+                                            <td>another@example.com</td>
+                                            <td>$50.00</td>
+                                            <td>Product purchase</td>
+                                        </tr>
+                                        <!-- Add more transaction history rows as needed -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Content for Next of Kin Information -->
+  <div class="col-md-9 ml-md-auto col-lg-10 px-md-4">
+    <div id="next-of-kin-content" class="content-section" style="display: none;">
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Next of Kin Information</h1>
+                </div>
+                <div class="card-body">
+                    <form id="nextOfKinForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" id="fullName" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="relationship">Relationship:</label>
+                            <select id="relationship" class="form-control" required>
+                                <option value="spouse">Spouse</option>
+                                <option value="parent">Parent</option>
+                                <option value="child">Child</option>
+                                <option value="sibling">Sibling</option>
+                                <option value="relative">Relative</option>
+                                <!-- Add more relationship options as needed -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+             <!-- Content for KYC Update -->
+<div id="kyc-update-content" class="content-section" style="display: none;">
+    <!-- KYC Update Form -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card-box">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title">KYC Update</h1>
+                            <!-- KYC Form -->
+                            <form id="kycForm">
+                                <!-- User Information Section -->
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dob" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" id="dob" name="dob" required>
+                                </div>
+
+                                <!-- Document Type Selection -->
+                                <div class="mb-3">
+                                    <label for="documentType" class="form-label">Select Document Type</label>
+                                    <select class="form-select" id="documentType" name="documentType" required>
+                                        <option value="" selected disabled>Select Document Type</option>
+                                        <option value="passport">Passport (General)</option>
+                                        <option value="national_id">National ID Card (General)</option>
+                                        <option value="driver_license">Driver's License (General)</option>
+                                        <option value="ssn">Social Security Number (SSN, USA)</option>
+                                        <option value="nhs_number">NHS Number (UK)</option>
+                                        <option value="citizenship_card">Citizenship Card (Canada)</option>
+                                        <option value="cédula_de_ciudadanía">Cédula de Ciudadanía (Colombia)</option>
+                                        <option value="carte_nationale_d'identité">Carte Nationale d'Identité (France)</option>
+                                        <!-- Add more options for other common government-issued IDs -->
+                                    </select>
+                                </div>
+
+                                <!-- Document Upload Section -->
+                                <div class="mb-3">
+                                    <label for="documentUpload" class="form-label">Upload Identification Document</label>
+                                    <input type="file" class="form-control" id="documentUpload" name="documentUpload" accept=".pdf,.jpg,.png" required>
+                                    <br>
+                                     <small class="form-text text-muted custom-text-color">Accepted formats: PDF, JPG, PNG</small>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+              <!-- Content for Customer Support -->
+<div id="customer-support-content" class="content-section" style="display: none;">
+    <!-- Main content area -->
+    <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
+        <header class="bg-primary text-white text-center py-3">
+            <h1>Customer Support</h1>
+        </header>
+
+        <main class="container mt-4">
+            <!-- Support Options -->
+            <section class="support-options">
+                <div class="row">
+                    <!-- Support Option 1 -->
+                  
+<div class="col-md-6 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <i class="fas fa-ticket-alt fa-3x mb-2"></i>
+            <h2></h2>
+            <a href="ticket-system.html" class="btn btn-primary btn-lg">Open Ticket</a>
+        </div>
+    </div>
+</div>
+
+                  <!-- Support Option 2 -->
+<div class="col-md-6 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <i class="fas fa-envelope fa-3x mb-2"></i>
+            <h2></h2>
+            <button class="btn btn-primary btn-lg" onclick="openEmailTemplate()">Email Us</button>
+        </div>
+    </div>
+</div>
+                    <!-- Support Option 3 -->
+<div class="col-md-6 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <i class="fas fa-comments fa-3x mb-2"></i>
+            <h2></h2>
+            <a href="YOUR_TAWK_LIVE_CHAT_LINK" class="btn btn-primary btn-lg" target="_blank">Live Chat</a>
+        </div>
+    </div>
+</div>
+
+                    <!-- Support Option 4 -->
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="fab fa-whatsapp fa-3x mb-2"></i>
+                                <h2></h2>
+                                <a class="btn btn-primary btn-lg" href="https://wa.me/yourwhatsappnumber">WhatsApp Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Resources -->
+            <section class="support-resources mt-4">
+                <h2 class="mb-4">Support Resources</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a class="btn btn-secondary btn-lg btn-block" href="faq.html">FAQs</a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a class="btn btn-secondary btn-lg btn-block" href="contact.html">Help Center</a>
+                    </div>
+                </div>
+                <p>Operating Hours: Monday - Friday, 9:00 AM - 5:00 PM (UTC)</p>
+                <a class="btn btn-link" href="https://www.youtube.com/yourchannel">YouTube Video Tutorial</a>
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Content for Account Logout -->
+<div id="logout-content" class="content-section" style="display: none;">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Account Logout</h1>
+                <button class="btn btn-danger" onclick="confirmLogout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Include Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    
+    <!-- Your JavaScript code for handling menu clicks and Firebase authentication -->
+    <script src="/assets/js/dashboard.js"></script>
+    <script src="/assets/js/make-investment.js"></script>
+</body>
+</html>
